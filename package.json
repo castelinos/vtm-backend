@@ -1,0 +1,21 @@
+{
+  "name": "vtm-backend",
+  "version": "1.0.0",
+  "description": "Vehicle Transfer Module - Backend services",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "tsc && node ./dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.4.1",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
