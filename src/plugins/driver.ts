@@ -16,9 +16,12 @@ export async function getDrivers(req,res) {
 
 export async function createDriver(req,res) {
     try {
-        let { name, contact } = req.body;
-        await Driver.create({ name, contact });
-        res.status(201).json({message:'Driver profile created!'})
+        const { name, contact } = req.body;
+        const { filename } = req.file;
+
+        await Driver.create({ avatar: filename, name, contact });
+        res.status(201).json({message:'Driver profile created!'});
+
     } catch (error) {
         console.log('Error creating driver profile', error.message)
         res.status(500).json({
