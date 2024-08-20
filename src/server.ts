@@ -1,6 +1,14 @@
 import express from 'express';
-const server = express();
+import config from './config.js';
+import { connectDB } from './lib/db.js';
+import driverRouter from './routes/driver.js';
 
-server.listen(3000, ()=>{
-    console.log('Server listening on port 3000!');
+const server = express();
+server.use(express.json());
+server.use(express.urlencoded({ extended:false }));
+
+server.use('/catalog/drivers', driverRouter);
+
+server.listen( config.server.port, ()=>{
+    console.log('Server listening on port', config.server.port);
 })
