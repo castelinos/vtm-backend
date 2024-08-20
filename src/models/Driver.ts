@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize } from "sequelize";
 import {sequelize} from '../lib/db.js';
 
-const Driver = sequelize.define('Driver',{
+const Driver = sequelize.define('driver',{
     avatar:{
         type:DataTypes.STRING,
     },
