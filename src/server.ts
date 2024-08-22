@@ -2,11 +2,14 @@ import express from 'express';
 import config from './config.js';
 import { connectDB } from './lib/db.js';
 import driverRouter from './routes/driver.js';
-import vehicleRouter from './routes/vehicle.js'
+import vehicleRouter from './routes/vehicle.js';
+import cors from "cors";
 
 const server = express();
+
+server.use(cors());
 server.use(express.json());
-server.use(express.urlencoded({ extended:false }));
+server.use(express.urlencoded({ extended:true }));
 
 server.use('/catalog/drivers', driverRouter);
 server.use('/catalog/vehicles', vehicleRouter);
