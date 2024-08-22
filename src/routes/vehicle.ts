@@ -8,7 +8,7 @@ const upload = multer({ storage });
 
 router.get('/', getVehicles);
 
-router.post('/', upload.fields([{ name:'cert_puc', maxCount:1 },{ name:'cert_insurance', maxCount:1 }]), createVehicle);
+router.post('/', upload.fields([{name:'image', maxCount:1},{ name:'cert_puc', maxCount:1 },{ name:'cert_insurance', maxCount:1 }]), createVehicle);
 
 router.get('/:id', findVehicleByID, getVehicleByID);
 

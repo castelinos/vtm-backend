@@ -23,8 +23,9 @@ export async function createVehicle(req,res) {
             owner_id: ownerID,
             owner_type: ownerType
         } = req.body;
-        
-        await Vehicle.create({ 
+
+        await Vehicle.create({
+            image: req.files['image'][0].filename, 
             vehicleNumber,
             vehicleType,
             brandName,
