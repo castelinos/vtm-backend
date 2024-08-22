@@ -15,6 +15,9 @@ const Vehicle = sequelize.define('vehicle',{
         type: DataTypes.STRING,
         allowNull: false,
     },
+    image:{
+         type: DataTypes.STRING,
+    },
     certPUC:{
         type: DataTypes.STRING,
     },
