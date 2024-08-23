@@ -11,6 +11,7 @@ env = dotenvParseVariables(env.parsed);
 const config = {
     server: {
         port: process.env.SERVER_PORT || 3000,
+        url: process.env.SERVER_URL || `http://localhost:${process.env.SERVER_PORT || 3000}`
     },
     db:{
         name: process.env.DB_NAME || 'default',
