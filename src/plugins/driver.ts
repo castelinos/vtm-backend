@@ -1,4 +1,6 @@
+import path from "node:path";
 import Driver from "../models/Driver.js";
+import config from "../config.js";
 
 
 export async function getDrivers(req,res) {
@@ -17,9 +19,10 @@ export async function getDrivers(req,res) {
 export async function createDriver(req,res) {
     try {
         const { name, contact } = req.body;
-        const { filename } = req.file;
+        const { path: filePath } = req.file;
+        const avatarPath = new URL( filePath, config.server.url ).toString();
 
-        await Driver.create({ avatar: filename, name, contact });
+        await Driver.create({ avatar: avatarPath, name, contact });
         res.status(201).json({message:'Driver profile created!'});
 
     } catch (error) {

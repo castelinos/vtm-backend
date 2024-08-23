@@ -1,3 +1,4 @@
+import config from "../config.js";
 import Vehicle from "../models/Vehicle.js";
 
 
@@ -24,15 +25,24 @@ export async function createVehicle(req,res) {
             owner_type: ownerType
         } = req.body;
 
+        const { path: imageFilePath } = req.files['image'][0];
+        const vehicleImagePath = imageFilePath ? new URL( imageFilePath, config.server.url).toString() : '';
+
+        const { path: pucFilePath } = req.files['cert_puc'][0];
+        const pucPath = pucFilePath ? new URL( pucFilePath, config.server.url).toString() : '';
+
+        const { path: insuranceFilePath } = req.files['cert_insurance'][0];
+        const insurancePath = insuranceFilePath ? new URL( insuranceFilePath, config.server.url).toString() : '';
+        
         await Vehicle.create({
-            image: req.files['image'][0].filename, 
+            image: vehicleImagePath, 
             vehicleNumber,
             vehicleType,
             brandName,
             ownerEntityID: ownerID,
             ownerEntityType: ownerType,
-            certPUC: req.files['cert_puc'][0].filename,
-            certInsurance: req.files['cert_insurance'][0].filename,
+            certPUC: pucPath,
+            certInsurance: insurancePath,
         });
 
         res.status(201).json({message:'Vehicle profile created!'});
